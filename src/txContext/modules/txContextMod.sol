@@ -55,21 +55,21 @@ pragma solidity >=0.8.30;
  * @dev Storage identifier format:
  * ---------------------------------------------------------------------------
  * {org}.{project}.{domain-type}.{domain}.{version}.{sub-domain}
- * 
+ *
  * Minimal format:
  * ---------------------------------------------------------------------------
  * {project}.{domain}.{version}.{sub-domain}
- * 
+ *
  * Example (minimal):
  * project.context.v1.nonce
- * 
+ *
  * @custom:storage-location erc8042:org.project.business.context.v1.nonce
  */
 
 bytes32 constant SLOT_NONCE = keccak256("org.project.business.context.v1.nonce");
 
 /**
- * @dev 
+ * @dev
  * Example (minimal):
  * project.context.v1.txhash
  * ---------------------------------

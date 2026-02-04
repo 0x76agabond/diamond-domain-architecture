@@ -26,7 +26,7 @@ contract Diamond {
         /**
          * Setting the contract owner
          */
-        OwnerMod.setContractOwner(_diamondOwner);        
+        OwnerMod.setContractOwner(_diamondOwner);
     }
 
     fallback() external payable {

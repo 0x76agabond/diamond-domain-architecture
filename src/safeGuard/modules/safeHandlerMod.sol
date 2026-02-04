@@ -12,7 +12,7 @@ pragma solidity >=0.8.30;
 /**
  * @dev
  * Util functions and types for Safe Guard module
- * Compatible with Safe v1.4.1 
+ * Compatible with Safe v1.4.1
  */
 
 // keccak256("SafeMessage(bytes message)");
@@ -37,7 +37,7 @@ enum SafeOperation {
  */
 bytes32 constant SAFE_DOMAIN_SEPARATOR_TYPEHASH = keccak256("EIP712Domain(uint256 chainId,address verifyingContract)");
 
-function domainSeparator(address walletAddress)  view returns (bytes32 sep) {
+function domainSeparator(address walletAddress) view returns (bytes32 sep) {
     uint256 chainId;
     bytes32 domainTypeHash = SAFE_DOMAIN_SEPARATOR_TYPEHASH;
     assembly {
@@ -64,13 +64,10 @@ function domainSeparator(address walletAddress)  view returns (bytes32 sep) {
  * @param module The module address initiating the transaction
  * @return moduleTxHash The computed module transaction hash
  */
-function getModuleTransactionHash(
-    address to,
-    uint256 value,
-    bytes memory data,
-    SafeOperation operation,
-    address module
-)  pure returns (bytes32 moduleTxHash) {
+function getModuleTransactionHash(address to, uint256 value, bytes memory data, SafeOperation operation, address module)
+    pure
+    returns (bytes32 moduleTxHash)
+{
     moduleTxHash = keccak256(abi.encodePacked(to, value, data, operation, module));
 }
 
@@ -107,7 +104,7 @@ function getTransactionHash(
     address gasToken,
     address refundReceiver,
     uint256 _nonce
-)  view returns (bytes32 txHash) {
+) view returns (bytes32 txHash) {
     bytes32 domainHash = domainSeparator(walletAddress);
     bytes32 txTypeHash = SAFE_TX_TYPEHASH;
     assembly {
