@@ -34,13 +34,13 @@ It mirrors the structural pattern used in [Compose](https://github.com/Perfect-A
 
 This repository provides a reference implementation and gas benchmarks comparing the original AppStorage pattern with Domain and Isolated Domain architectures.
 
-- **AppStorage (src/benchmark/appStorage.sol)**  
+- **AppStorage** - `src/benchmark/appStorage.sol`  
 Original Storage pattern for Diamond.
 
-- **Domain (src/benchmark/domain.sol)**  
+- **Domain** - `src/benchmark/domain.sol`  
 ERC-8110 convention, separating storage identifiers by domain and sub-domain to improve clarity and provide a consistent upgrade path for storage.
 
-- **Isolated Domain - src/benchmark/isolatedDomain.sol**  
+- **Isolated Domain** - `src/benchmark/isolatedDomain.sol`  
 ERC-8110 convention, moving the data access layer from facets into the domain by introducing explicit getters and setters.  
 This fully isolates storage management code from business logic.
 
