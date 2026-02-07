@@ -5,7 +5,7 @@ Reference Implementation for [ERC-8110: Domain Architecture for Diamonds](https:
 
 **⚠️ *Important Notice: The smart contract code provided in this repo serves only as an illustrative example. This example code has not undergone any security audits or formal verification processes.***
 
-**⚠️ *Under developmet.***
+**⚠️ *Under development!***
 
 --- 
 
