@@ -28,10 +28,10 @@ enum SafeOperation {
  * EIP-712 domain separator typehash used by Safe.
  *
  * Safe uses the following domain definition:
- *   EIP712Domain(uint256 chainId,address verifyingContract)
+ * EIP712Domain(uint256 chainId,address verifyingContract)
  *
  * The corresponding typehash is:
- *   keccak256("EIP712Domain(uint256 chainId,address verifyingContract)")
+ * keccak256("EIP712Domain(uint256 chainId,address verifyingContract)")
  *
  * This implementation mirrors Safe's internal domain separator logic.
  */
@@ -40,7 +40,7 @@ bytes32 constant SAFE_DOMAIN_SEPARATOR_TYPEHASH = keccak256("EIP712Domain(uint25
 function domainSeparator(address walletAddress) view returns (bytes32 sep) {
     uint256 chainId;
     bytes32 domainTypeHash = SAFE_DOMAIN_SEPARATOR_TYPEHASH;
-    assembly {
+    assembly ("memory-safe") {
         chainId := chainid()
         let ptr := mload(0x40)
         mstore(ptr, domainTypeHash)
@@ -107,7 +107,7 @@ function getTransactionHash(
 ) view returns (bytes32 txHash) {
     bytes32 domainHash = domainSeparator(walletAddress);
     bytes32 txTypeHash = SAFE_TX_TYPEHASH;
-    assembly {
+    assembly ("memory-safe") {
         // Get the free memory pointer
         let ptr := mload(0x40)
         // Step 1: Hash the transaction data

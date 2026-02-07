@@ -68,6 +68,20 @@ pragma solidity >=0.8.30;
 
 bytes32 constant SLOT_NONCE = keccak256("org.project.business.context.v1.nonce");
 
+function getNonce() view returns (uint256 v) {
+    bytes32 position = SLOT_NONCE;
+    assembly {
+        v := tload(position)
+    }
+}
+
+function setNonce(uint256 nonce) {
+    bytes32 position = SLOT_NONCE;
+    assembly {
+        tstore(position, nonce)
+    }
+}
+
 /**
  * @dev
  * Example (minimal):
@@ -78,14 +92,19 @@ bytes32 constant SLOT_NONCE = keccak256("org.project.business.context.v1.nonce")
 
 bytes32 constant SLOT_TX_HASH = keccak256("org.project.business.context.v1.txhash");
 
-/**
- * @dev Example (minimal):
- * project.context.v1.txtype
- * ---------------------------------
- * @custom:storage-location erc8042:org.project.business.context.v1.txtype
- */
+function getTxHash() view returns (bytes32 v) {
+    bytes32 position = SLOT_TX_HASH;
+    assembly {
+        v := tload(position)
+    }
+}
 
-bytes32 constant SLOT_TX_TYPE = keccak256("org.project.business.context.v1.txtype");
+function setTxHash(bytes32 txHash) {
+    bytes32 position = SLOT_TX_HASH;
+    assembly {
+        tstore(position, txHash)
+    }
+}
 
 /**
  * @dev
@@ -105,40 +124,19 @@ enum transactionType {
     MODULE
 }
 
-// Getters
-function getNonce() view returns (uint256 v) {
-    bytes32 position = SLOT_NONCE;
-    assembly {
-        v := tload(position)
-    }
-}
+/**
+ * @dev Example (minimal):
+ * project.context.v1.txtype
+ * ---------------------------------
+ * @custom:storage-location erc8042:org.project.business.context.v1.txtype
+ */
 
-function getTxHash() view returns (bytes32 v) {
-    bytes32 position = SLOT_TX_HASH;
-    assembly {
-        v := tload(position)
-    }
-}
+bytes32 constant SLOT_TX_TYPE = keccak256("org.project.business.context.v1.txtype");
 
 function getTxType() view returns (transactionType txType) {
     bytes32 position = SLOT_TX_TYPE;
     assembly {
         txType := tload(position)
-    }
-}
-
-//  Setters
-function setNonce(uint256 nonce) {
-    bytes32 position = SLOT_NONCE;
-    assembly {
-        tstore(position, nonce)
-    }
-}
-
-function setTxHash(bytes32 txHash) {
-    bytes32 position = SLOT_TX_HASH;
-    assembly {
-        tstore(position, txHash)
     }
 }
 
@@ -148,3 +146,4 @@ function setTxType(transactionType txType) {
         tstore(position, txType)
     }
 }
+
