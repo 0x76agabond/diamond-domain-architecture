@@ -113,12 +113,12 @@ function setC(bool c) {
     s.c = c;
 }
 
-function setD(bool d) { 
+function setD(bool d) {
     SubDomainStorage storage s = getSubDomainStorage();
     s.d = d;
 }
 
-function setE(bool e) { 
+function setE(bool e) {
     SubDomainStorage storage s = getSubDomainStorage();
     s.e = e;
 }
@@ -225,32 +225,37 @@ contract IsolatedDomainFacetSample {
        ========================================================= */
 
     function readAndWritePackedValue(bool c, bool d, bool e) external returns (bool, bool, bool) {
-
         (bool _c, bool _d, bool _e) = getCDE();
 
-        if (_c != c) 
+        if (_c != c) {
             setC(c);
-        
-        if (_d != d) 
-            setD(d);
+        }
 
-        if (_e != e) 
+        if (_d != d) {
+            setD(d);
+        }
+
+        if (_e != e) {
             setE(e);
+        }
 
         return getCDE();
-    }    
+    }
 
     function readAndWriteUnpackedValue(bool c, bool j, bool k) external returns (bool, bool, bool) {
         (bool _c, bool _j, bool _k) = getCJK();
 
-        if (_c != c) 
+        if (_c != c) {
             setC(c);
-        
-        if (_j != j) 
-            setJ(j);
+        }
 
-        if (_k != k) 
+        if (_j != j) {
+            setJ(j);
+        }
+
+        if (_k != k) {
             setK(k);
+        }
 
         return getCJK();
     }

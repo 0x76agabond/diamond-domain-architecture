@@ -140,29 +140,35 @@ contract AppStorageFacetSample {
     function readAndWritePackedValue(bool c, bool d, bool e) external returns (bool, bool, bool) {
         AppStorage storage s = getStorage();
 
-        if (s.c != c) 
+        if (s.c != c) {
             s.c = c;
-        
-        if (s.d != d) 
-            s.d = d;
+        }
 
-        if (s.e != e) 
+        if (s.d != d) {
+            s.d = d;
+        }
+
+        if (s.e != e) {
             s.e = e;
+        }
 
         return (s.c, s.d, s.e);
-    }    
+    }
 
     function readAndWriteUnpackedValue(bool c, bool j, bool k) external returns (bool, bool, bool) {
         AppStorage storage s = getStorage();
 
-        if (s.c != c) 
+        if (s.c != c) {
             s.c = c;
-        
-        if (s.j != j) 
-            s.j = j;
+        }
 
-        if (s.k != k) 
+        if (s.j != j) {
+            s.j = j;
+        }
+
+        if (s.k != k) {
             s.k = k;
+        }
 
         return (s.c, s.j, s.k);
     }
