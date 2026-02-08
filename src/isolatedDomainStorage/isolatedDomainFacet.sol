@@ -129,7 +129,7 @@ contract IsolatedDomainFacetSample {
             setE(e);
         }
 
-        return (getC(), getD(), getE());
+        return (getCDE());
     }
 
     /// read => write => read
@@ -146,6 +146,6 @@ contract IsolatedDomainFacetSample {
             setK(k);
         }
 
-        return (getC(), getJ(), getK());
+        return getCJK();
     }
 }

@@ -113,6 +113,10 @@ contract GasBenchmark is Test {
         );
     }
 
+    /**
+     * @dev in domain, those variables are well packed in the same storage slot
+     * keep the name for easier comparison with AppStorage.
+     */
     function test_Domain_readAndWriteUnpackedBools() public {
         domainSample.readAndWriteUnpackedValue(false, false, false);
     }
@@ -166,6 +170,10 @@ contract GasBenchmark is Test {
         );
     }
 
+    /**
+     * @dev in domain, those variables are well packed in the same storage slot
+     * keep the name for easier comparison with AppStorage.
+     */
     function test_IsolatedDomain_readAndWriteUnpackedBools() public {
         isolatedDomainSample.readAndWriteUnpackedValue(false, false, false);
     }
@@ -174,6 +182,10 @@ contract GasBenchmark is Test {
         isolatedDomainSample.readAndWritePackedValue(false, false, false);
     }
 
+    /**
+     * @dev in domain, those variables are well packed in the same storage slot
+     * keep the name for easier comparison with AppStorage.
+     */
     function test_IsolatedDomain_readAndWriteUnpackedBoolsSingle() public {
         isolatedDomainSample.readAndWriteUnpackedValueSingle(false, false, false);
     }
@@ -186,6 +198,10 @@ contract GasBenchmark is Test {
         (bool c, bool d, bool e) = appStoragePackedSample.readPackedValue();
     }
 
+    /**
+     * @dev in domain, those variables are well packed in the same storage slot
+     * keep the name for easier comparison with AppStorage.
+     */
     function test_AppPacked_readUnpackedValue() public view {
         (bool c, bool j, bool k) = appStoragePackedSample.readUnpackedValue();
     }
@@ -199,6 +215,10 @@ contract GasBenchmark is Test {
         appStoragePackedSample.writePackedBools(true, false, true);
     }
 
+    /**
+     * @dev in domain, those variables are well packed in the same storage slot
+     * keep the name for easier comparison with AppStorage.
+     */
     function test_AppPacked_writeUnpackedBools() public {
         appStoragePackedSample.writeUnpackedBools(true, false, true);
     }
@@ -219,6 +239,10 @@ contract GasBenchmark is Test {
         );
     }
 
+    /**
+     * @dev in domain, those variables are well packed in the same storage slot
+     * keep the name for easier comparison with AppStorage.
+     */
     function test_AppPacked_readAndWriteUnpackedBools() public {
         appStoragePackedSample.readAndWriteUnpackedValue(false, false, false);
     }
