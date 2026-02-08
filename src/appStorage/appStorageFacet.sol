@@ -113,7 +113,7 @@ contract AppStorageFacetSample {
                         READ & WRITE
        ========================================================= */
 
-    /// read => write => read   
+    /// read => write => read
     function readAndWritePackedValue(bool c, bool d, bool e) external returns (bool, bool, bool) {
         AppStorageSample.AppStorage storage s = AppStorageSample.getStorage();
 
@@ -132,7 +132,7 @@ contract AppStorageFacetSample {
         return (s.c, s.d, s.e);
     }
 
-    /// read => write => read   
+    /// read => write => read
     function readAndWriteUnpackedValue(bool c, bool j, bool k) external returns (bool, bool, bool) {
         AppStorageSample.AppStorage storage s = AppStorageSample.getStorage();
 

@@ -77,7 +77,7 @@ contract IsolatedDomainFacetSample {
                         READ & WRITE
        ========================================================= */
 
-    /// read => write => read   
+    /// read => write => read
     function readAndWritePackedValue(bool c, bool d, bool e) external returns (bool, bool, bool) {
         (bool _c, bool _d, bool _e) = getCDE();
 
@@ -96,7 +96,7 @@ contract IsolatedDomainFacetSample {
         return getCDE();
     }
 
-    /// read => write => read   
+    /// read => write => read
     function readAndWriteUnpackedValue(bool c, bool j, bool k) external returns (bool, bool, bool) {
         (bool _c, bool _j, bool _k) = getCJK();
 
@@ -115,9 +115,8 @@ contract IsolatedDomainFacetSample {
         return getCJK();
     }
 
-    /// read => write => read with single storage access  
+    /// read => write => read with single storage access
     function readAndWritePackedValueSingle(bool c, bool d, bool e) external returns (bool, bool, bool) {
-
         if (getC() != c) {
             setC(c);
         }
@@ -133,9 +132,8 @@ contract IsolatedDomainFacetSample {
         return (getC(), getD(), getE());
     }
 
-    /// read => write => read   
+    /// read => write => read
     function readAndWriteUnpackedValueSingle(bool c, bool j, bool k) external returns (bool, bool, bool) {
-
         if (getC() != c) {
             setC(c);
         }
