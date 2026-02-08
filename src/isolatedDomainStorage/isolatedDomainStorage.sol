@@ -14,7 +14,7 @@ pragma solidity >=0.8.30;
  * @dev
  * Benchmark contract for ERC-8110.
  * Domain Architecture pattern.
- * Domain for full slot variables 
+ * Domain for full slot variables
  * Sub-domain for variables can be packed in the same slot.
  * Bools are used for packing demonstration.
  * In practice developers can use other types.
@@ -75,11 +75,11 @@ function getSubDomainStorage() pure returns (SubDomainStorage storage s) {
 }
 
 /**
- * @dev 
+ * @dev
  * Helper to get multiple domain / sub-domain storage structs
- * 
- * @return domainStorage 
- * @return subDomainStorage 
+ *
+ * @return domainStorage
+ * @return subDomainStorage
  */
 
 function getAllDomainStorage()

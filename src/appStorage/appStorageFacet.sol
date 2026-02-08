@@ -17,8 +17,8 @@ pragma solidity >=0.8.30;
  */
 
 import "./libStorage.sol";
-contract AppStorageFacetSample {
 
+contract AppStorageFacetSample {
     /* =========================================================
                             READ
        ========================================================= */

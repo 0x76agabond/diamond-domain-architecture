@@ -42,5 +42,4 @@ library AppStorageSample {
             s.slot := pos
         }
     }
-    
 }
