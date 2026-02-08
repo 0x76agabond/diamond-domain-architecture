@@ -13,6 +13,8 @@ pragma solidity >=0.8.30;
 /**
  * Benchmark contract for ERC-8110.
  * AppStorage pattern.
+ * In this version, all bools are well packed.
+ * Some function are keep the name as unpacked for comparison with AppStorage pattern.
  */
 
 import "./libStorage.sol";
@@ -90,19 +92,11 @@ contract AppStoragePackedFacetSample {
 
         // slot 0
         s.a = a;
-
-        // mapping (hash-based slot)
         s.mappingB[bKey] = bValue;
-
-        // slot 2 (packed bools)
         s.c = c;
         s.d = d;
         s.e = e;
-
-        // another mapping (hash-based slot)
         s.mappingI[iKey] = iValue;
-
-        // slot 4 (packed bools)
         s.j = j;
         s.k = k;
         s.l = l;
@@ -112,6 +106,7 @@ contract AppStoragePackedFacetSample {
                         READ & WRITE
        ========================================================= */
 
+    /// read => write => read   
     function readAndWritePackedValue(bool c, bool d, bool e) external returns (bool, bool, bool) {
         AppStorageSample.AppStorage storage s = AppStorageSample.getStorage();
 
@@ -130,6 +125,7 @@ contract AppStoragePackedFacetSample {
         return (s.c, s.d, s.e);
     }
 
+    /// read => write => read   
     function readAndWriteUnpackedValue(bool c, bool j, bool k) external returns (bool, bool, bool) {
         AppStorageSample.AppStorage storage s = AppStorageSample.getStorage();
 

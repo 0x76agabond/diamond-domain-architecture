@@ -12,6 +12,8 @@ pragma solidity >=0.8.30;
 /**
  * Benchmark contract for ERC-8110.
  * Split storage into main domain + sub-domain.
+ * In this version, all bools are well packed.
+ * Some function are keep the name as unpacked for comparison with AppStorage pattern.
  */
 
 import "./domainStorage.sol";
@@ -107,6 +109,7 @@ contract DomainFacetSample {
                        READ & WRITE
       ========================================================= */
 
+    /// read => write => read   
     function readAndWritePackedValue(bool c, bool d, bool e) external returns (bool, bool, bool) {
         SubDomainStorage storage s = getSubDomainStorage();
 
@@ -125,6 +128,7 @@ contract DomainFacetSample {
         return (s.c, s.d, s.e);
     }
 
+    /// read => write => read   
     function readAndWriteUnpackedValue(bool c, bool j, bool k) external returns (bool, bool, bool) {
         SubDomainStorage storage s = getSubDomainStorage();
 

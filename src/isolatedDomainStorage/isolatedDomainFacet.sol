@@ -11,7 +11,9 @@ pragma solidity >=0.8.30;
 
 /**
  * Benchmark contract for ERC-8110.
- * Split storage into main domain + sub-domain.
+ * Split storage into main domain + sub-domain and communicate with storage via helper functions.
+ * In this version, all bools are well packed.
+ * Some function are keep the name as unpacked for comparison with AppStorage pattern.
  */
 
 import "./isolatedDomainStorage.sol";
@@ -75,6 +77,7 @@ contract IsolatedDomainFacetSample {
                         READ & WRITE
        ========================================================= */
 
+    /// read => write => read   
     function readAndWritePackedValue(bool c, bool d, bool e) external returns (bool, bool, bool) {
         (bool _c, bool _d, bool _e) = getCDE();
 
@@ -93,6 +96,7 @@ contract IsolatedDomainFacetSample {
         return getCDE();
     }
 
+    /// read => write => read   
     function readAndWriteUnpackedValue(bool c, bool j, bool k) external returns (bool, bool, bool) {
         (bool _c, bool _j, bool _k) = getCJK();
 
@@ -109,5 +113,41 @@ contract IsolatedDomainFacetSample {
         }
 
         return getCJK();
+    }
+
+    /// read => write => read with single storage access  
+    function readAndWritePackedValueSingle(bool c, bool d, bool e) external returns (bool, bool, bool) {
+
+        if (getC() != c) {
+            setC(c);
+        }
+
+        if (getD() != d) {
+            setD(d);
+        }
+
+        if (getE() != e) {
+            setE(e);
+        }
+
+        return (getC(), getD(), getE());
+    }
+
+    /// read => write => read   
+    function readAndWriteUnpackedValueSingle(bool c, bool j, bool k) external returns (bool, bool, bool) {
+
+        if (getC() != c) {
+            setC(c);
+        }
+
+        if (getJ() != j) {
+            setJ(j);
+        }
+
+        if (getK() != k) {
+            setK(k);
+        }
+
+        return (getC(), getJ(), getK());
     }
 }

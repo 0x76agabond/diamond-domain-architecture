@@ -102,6 +102,26 @@ function getCDE() view returns (bool c, bool d, bool e) {
     e = s.e;
 }
 
+function getC() view returns (bool) {
+    return getSubDomainStorage().c;
+}
+
+function getD() view returns (bool) {
+    return getSubDomainStorage().d;
+}
+
+function getE() view returns (bool) {
+    return getSubDomainStorage().e;
+}
+
+function getJ() view returns (bool) {
+    return getSubDomainStorage().j;
+}
+
+function getK() view returns (bool) {
+    return getSubDomainStorage().k;
+}
+
 function getCJK() view returns (bool c, bool j, bool k) {
     SubDomainStorage storage s = getSubDomainStorage();
     c = s.c;

@@ -174,6 +174,14 @@ contract GasBenchmark is Test {
         isolatedDomainSample.readAndWritePackedValue(false, false, false);
     }
 
+    function test_IsolatedDomain_readAndWriteUnpackedBoolsSingle() public {
+        isolatedDomainSample.readAndWriteUnpackedValueSingle(false, false, false);
+    }
+
+    function test_IsolatedDomain_readAndWritePackedBoolsSingle() public {
+        isolatedDomainSample.readAndWritePackedValueSingle(false, false, false);
+    }
+
     function test_AppPacked_ReadPackedValue() public view {
         (bool c, bool d, bool e) = appStoragePackedSample.readPackedValue();
     }
