@@ -14,46 +14,7 @@ pragma solidity >=0.8.30;
  * Split storage into main domain + sub-domain.
  */
 
-/* =========================================================
-                    MAIN DOMAIN STORAGE
-   ========================================================= */
-
-/// @custom:storage-location erc8042:app.domain.v1
-bytes32 constant DOMAIN_STORAGE_POSITION = keccak256("app.domain.v1");
-
-struct DomainStorage {
-    uint256 a; // slot 0
-    mapping(uint8 => uint256) mappingB; // slot 1 (hash-based)
-    mapping(uint8 => uint256) mappingI; // slot 2 (hash-based)
-}
-
-function getDomainStorage() pure returns (DomainStorage storage s) {
-    bytes32 pos = DOMAIN_STORAGE_POSITION;
-    assembly {
-        s.slot := pos
-    }
-}
-/* =========================================================
-                    SUB-DOMAIN STORAGE
-   ========================================================= */
-/// @custom:storage-location erc8042:app.domain.v1.flags
-bytes32 constant SUB_DOMAIN_STORAGE_POSITION = keccak256("app.domain.v1.flags");
-
-struct SubDomainStorage {
-    bool c;
-    bool d;
-    bool e;
-    bool j;
-    bool k;
-    bool l;
-}
-
-function getSubDomainStorage() pure returns (SubDomainStorage storage s) {
-    bytes32 pos = SUB_DOMAIN_STORAGE_POSITION;
-    assembly {
-        s.slot := pos
-    }
-}
+import "./domainStorage.sol";
 
 contract DomainFacetSample {
     /* =========================================================
@@ -78,8 +39,7 @@ contract DomainFacetSample {
         view
         returns (uint256 a, uint256 b, bool c, bool d, bool e, uint256 i, bool j, bool k, bool l)
     {
-        DomainStorage storage dmn = getDomainStorage();
-        SubDomainStorage storage sub = getSubDomainStorage();
+        (DomainStorage storage dmn, SubDomainStorage storage sub) = getAllDomainStorage();
 
         a = dmn.a;
         b = dmn.mappingB[bKey];
@@ -127,8 +87,7 @@ contract DomainFacetSample {
         bool k,
         bool l
     ) external {
-        DomainStorage storage dmn = getDomainStorage();
-        SubDomainStorage storage sub = getSubDomainStorage();
+        (DomainStorage storage dmn, SubDomainStorage storage sub) = getAllDomainStorage();
 
         // main domain
         dmn.a = a;

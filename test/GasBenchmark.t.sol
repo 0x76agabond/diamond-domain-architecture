@@ -4,20 +4,23 @@ pragma solidity ^0.8.13;
 import {Test} from "forge-std/Test.sol";
 import {console} from "forge-std/console.sol";
 
-import {AppStorageFacetSample} from "../../src/benchmark/appStorage.sol";
-import {DomainFacetSample} from "../../src/benchmark/Domain.sol";
-import {IsolatedDomainFacetSample} from "../../src/benchmark/isolatedDomain.sol";
+import {AppStorageFacetSample} from "../../src/appStorage/appStorageFacet.sol";
+import {DomainFacetSample} from "../../src/domainStorage/domainFacet.sol";
+import {IsolatedDomainFacetSample} from "../../src/isolatedDomainStorage/isolatedDomainFacet.sol";
+import {AppStoragePackedFacetSample} from "../../src/appStoragePacked/appStoragePackedFacet.sol";
 
 contract GasBenchmark is Test {
     AppStorageFacetSample public appStorageSample;
     DomainFacetSample public domainSample;
     IsolatedDomainFacetSample public isolatedDomainSample;
+    AppStoragePackedFacetSample public appStoragePackedSample;
     address owner = address(0xABCD);
 
     function setUp() public {
         appStorageSample = new AppStorageFacetSample();
         domainSample = new DomainFacetSample();
         isolatedDomainSample = new IsolatedDomainFacetSample();
+        appStoragePackedSample = new AppStoragePackedFacetSample();
     }
 
     function test_App_ReadPackedValue() public view {
@@ -169,6 +172,51 @@ contract GasBenchmark is Test {
 
     function test_IsolatedDomain_readAndWritePackedBools() public {
         isolatedDomainSample.readAndWritePackedValue(false, false, false);
+    }
+
+    function test_AppPacked_ReadPackedValue() public view {
+        (bool c, bool d, bool e) = appStoragePackedSample.readPackedValue();
+    }
+
+    function test_AppPacked_readUnpackedValue() public view {
+        (bool c, bool j, bool k) = appStoragePackedSample.readUnpackedValue();
+    }
+
+    function test_AppPacked_readAllValue() public view {
+        (uint256 a, uint256 b, bool c, bool d, bool e, uint256 i, bool j, bool k, bool l) =
+            appStoragePackedSample.readAllValue(0, 0);
+    }
+
+    function test_AppPacked_writePackedBools() public {
+        appStoragePackedSample.writePackedBools(true, false, true);
+    }
+
+    function test_AppPacked_writeUnpackedBools() public {
+        appStoragePackedSample.writeUnpackedBools(true, false, true);
+    }
+
+    function test_AppPacked_writeAllValue() public {
+        appStoragePackedSample.writeAllValue(
+            123, // a
+            1, // bKey
+            999, // bValue
+            true, // c
+            false, // d
+            true, // e
+            2, // iKey
+            888, // iValue
+            true, // j
+            false, // k
+            true // l
+        );
+    }
+
+    function test_AppPacked_readAndWriteUnpackedBools() public {
+        appStoragePackedSample.readAndWriteUnpackedValue(false, false, false);
+    }
+
+    function test_AppPacked_readAndWritePackedBools() public {
+        appStoragePackedSample.readAndWritePackedValue(false, false, false);
     }
 }
 

@@ -5,8 +5,6 @@ Reference Implementation for [ERC-8110: Domain Architecture for Diamonds](https:
 
 **⚠️ *Important Notice: The smart contract code provided in this repo serves only as an illustrative example. This example code has not undergone any security audits or formal verification processes.***
 
-**⚠️ *Under development!***
-
 --- 
 
 ## Abstract
@@ -17,32 +15,26 @@ It defines a domain-centric storage management architecture, providing consisten
 
 This pattern helps reduce storage collisions and human error while enabling better tooling for multi-facet systems.
 
-## Key Elements
+## Benchmark
 
-### Example Source Organization
-
-Examples are implemented under `src/example`.
-
-These examples demonstrate Domain and Isolated Domain patterns built on top of ERC-8109, focusing on domain-centric storage management and the separation of storage ownership from facet logic.
-
-This repository uses Solidity free functions inside module (`mod`) files to manage storage, instead of libraries.
-
-This design choice is made for ecosystem compatibility and to keep the examples minimal and explicit.  
-It mirrors the structural pattern used in [Compose](https://github.com/Perfect-Abstractions/Compose), where `mod` files define storage boundaries and identifiers.
-
-### Benchmark 
+### Ideas
 
 This repository provides a reference implementation and gas benchmarks comparing the original AppStorage pattern with Domain and Isolated Domain architectures.
 
-- **AppStorage** - `src/benchmark/appStorage.sol`  
-Original Storage pattern for Diamond.
+- **AppStorage** - `src/appStorage/`  
+The original storage pattern commonly used in Diamonds.  
+In this benchmark, the storage packing is intentionally broken to simulate a realistic upgrade scenario where layout changes over time.
 
-- **Domain** - `src/benchmark/domain.sol`  
-ERC-8110 convention, separating storage identifiers by domain and sub-domain to improve clarity and provide a consistent upgrade path for storage.
+- **AppStoragePacked** - `src/appStoragePacked/`  
+The original AppStorage pattern with an optimized and tightly packed storage layout.  
+This variant is included to provide a fair baseline comparison against ERC-8110–based approaches.
 
-- **Isolated Domain** - `src/benchmark/isolatedDomain.sol`  
-ERC-8110 convention, moving the data access layer from facets into the domain by introducing explicit getters and setters.  
-This fully isolates storage management code from business logic.
+- **Domain** - `src/domainStorage/`  
+An ERC-8110–compliant approach that separates storage identifiers by domain and sub-domain, improving clarity and providing a consistent and safer upgrade path for storage.
+
+- **Isolated Domain** - `src/isolatedDomainStorage/`  
+An ERC-8110–compliant approach that moves the data access layer from facets into the domain by introducing explicit getters and setters.  
+This fully isolates storage management code from business logic, while keeping runtime gas costs comparable.
 
 ### Run test
 
@@ -52,20 +44,18 @@ This fully isolates storage management code from business logic.
 
 ### Result Benchmark 
 
-| Function / Metric           | AppStorage | Domain  | Isolated Domain |
-|----------------------------|------------|---------|-----------------|
-| Deployment Gas            | 586,670    | **568,165** | 666,034      |
-| Bytecode Size (bytes)     | 2,497      | **2,415**   | 2,868        |
-| readPackedValue            | **2,386**  | **2,386**  | 2,446        |
-| readUnpackedValue          | 4,523      | **2,431**  | 2,491        |
-| readAllValue               | 11,479     | **9,375**  | 9,499        |
-| writePackedBools           | 44,157     | 44,157  | **44,127**      |
-| writeUnpackedBools         | 66,305     | 44,201  | **44,171**      |
-| writeAllValue              | 134,501    | **112,411** | 112,500     |
-| readAndWritePackedValue    | 24,676     | 24,652  | **24,509**      |
-| readAndWriteUnpackedValue  | 26,818     | 24,695  | **24,563**      |
-
-
+| Function / Metric           | AppStorage | AppStorage Packed | Domain | Isolated Domain |
+|----------------------------|------------|-------------------|--------|-----------------|
+| Deployment Gas             | 586,670    | 593,111           | **581,778** | 666,034         |
+| Bytecode Size (bytes)      | 2,497      | 2,530             | **2,478**  | 2,868           |
+| readPackedValue            | **2,386**  | **2,386**         | **2,386**  | 2,446           |
+| readUnpackedValue          | 4,523      | **2,431**         | **2,431**  | 2,491           |
+| readAllValue               | 11,479     | 9,384             | **9,375**  | 9,499           |
+| writePackedBools           | 44,157     | 44,157            | 44,157     | **44,127**      |
+| writeUnpackedBools         | 66,305     | 44,201            | 44,201     | **44,171**      |
+| writeAllValue              | 134,501    | 112,615           | **112,418**| 112,500         |
+| readAndWritePackedValue    | 24,676     | 24,676            | 24,652     | **24,509**      |
+| readAndWriteUnpackedValue  | 26,818     | 24,719            | 24,695     | **24,563**      |
 
 
 

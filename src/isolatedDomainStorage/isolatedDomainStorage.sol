@@ -1,17 +1,36 @@
 pragma solidity >=0.8.30;
+
 // SPDX-License-Identifier: MIT
 
 /*
  * ===========================================================================
  * Author: Hoang (0x76agabond)
  * ===========================================================================
- * ERC-8110 Reference Implementation - Domain / Sub-domain Split
+ * ERC-8110 Reference Implementation - Diamond as Gnosis Safe Guard
  * ===========================================================================
  */
 
 /**
+ * @dev
  * Benchmark contract for ERC-8110.
- * Split storage into main domain + sub-domain.
+ * Domain Architecture pattern.
+ * Domain for full slot variables 
+ * Sub-domain for variables can be packed in the same slot.
+ * Bools are used for packing demonstration.
+ * In practice developers can use other types.
+ * Base on business, developer can also split by other criteria.
+ */
+
+/**
+ * @dev
+ * An Isolated Domain is a domain that have no facet accessing its storage directly.
+ * All access must go through specific helper functions.
+ */
+
+/**
+ * @dev
+ * This implementation use Solidity's free funtion instead of library
+ * free function in this case, behave similar to internal function in library.
  */
 
 /* =========================================================
@@ -54,6 +73,14 @@ function getSubDomainStorage() pure returns (SubDomainStorage storage s) {
         s.slot := pos
     }
 }
+
+/**
+ * @dev 
+ * Helper to get multiple domain / sub-domain storage structs
+ * 
+ * @return domainStorage 
+ * @return subDomainStorage 
+ */
 
 function getAllDomainStorage()
     pure
@@ -163,100 +190,4 @@ function setAllValue(
     sub.j = j;
     sub.k = k;
     sub.l = l;
-}
-
-contract IsolatedDomainFacetSample {
-    /* =========================================================
-                            READ
-       ========================================================= */
-
-    /// read only packed bools (same slot in sub-domain)
-    function readPackedValue() external view returns (bool, bool, bool) {
-        return getCDE();
-    }
-
-    /// read bools from different logical groups (still packed)
-    function readUnpackedValue() external view returns (bool, bool, bool) {
-        return getCJK();
-    }
-
-    /// read everything (domain + sub-domain)
-    function readAllValue(uint8 bKey, uint8 iKey)
-        external
-        view
-        returns (uint256 a, uint256 b, bool c, bool d, bool e, uint256 i, bool j, bool k, bool l)
-    {
-        return getAllValue(bKey, iKey);
-    }
-
-    /* =========================================================
-                            WRITE
-       ========================================================= */
-
-    /// write packed bools (single slot SSTORE in sub-domain)
-    function writePackedBools(bool c, bool d, bool e) external {
-        setCDE(c, d, e);
-    }
-
-    /// write logical-unpacked bools (still same slot, different fields)
-    function writeUnpackedBools(bool c, bool j, bool k) external {
-        setCJK(c, j, k);
-    }
-
-    /// write everything (domain + sub-domain)
-    function writeAllValue(
-        uint256 a,
-        uint8 bKey,
-        uint256 bValue,
-        bool c,
-        bool d,
-        bool e,
-        uint8 iKey,
-        uint256 iValue,
-        bool j,
-        bool k,
-        bool l
-    ) external {
-        setAllValue(a, bKey, bValue, c, d, e, iKey, iValue, j, k, l);
-    }
-
-    /* =========================================================
-                        READ & WRITE
-       ========================================================= */
-
-    function readAndWritePackedValue(bool c, bool d, bool e) external returns (bool, bool, bool) {
-        (bool _c, bool _d, bool _e) = getCDE();
-
-        if (_c != c) {
-            setC(c);
-        }
-
-        if (_d != d) {
-            setD(d);
-        }
-
-        if (_e != e) {
-            setE(e);
-        }
-
-        return getCDE();
-    }
-
-    function readAndWriteUnpackedValue(bool c, bool j, bool k) external returns (bool, bool, bool) {
-        (bool _c, bool _j, bool _k) = getCJK();
-
-        if (_c != c) {
-            setC(c);
-        }
-
-        if (_j != j) {
-            setJ(j);
-        }
-
-        if (_k != k) {
-            setK(k);
-        }
-
-        return getCJK();
-    }
 }
