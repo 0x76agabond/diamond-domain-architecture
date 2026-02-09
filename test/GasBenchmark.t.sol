@@ -182,18 +182,6 @@ contract GasBenchmark is Test {
         isolatedDomainSample.readAndWritePackedValue(false, false, false);
     }
 
-    /**
-     * @dev in domain, those variables are well packed in the same storage slot
-     * keep the name for easier comparison with AppStorage.
-     */
-    function test_IsolatedDomain_readAndWriteUnpackedBoolsSingle() public {
-        isolatedDomainSample.readAndWriteUnpackedValueSingle(false, false, false);
-    }
-
-    function test_IsolatedDomain_readAndWritePackedBoolsSingle() public {
-        isolatedDomainSample.readAndWritePackedValueSingle(false, false, false);
-    }
-
     function test_AppPacked_ReadPackedValue() public view {
         (bool c, bool d, bool e) = appStoragePackedSample.readPackedValue();
     }

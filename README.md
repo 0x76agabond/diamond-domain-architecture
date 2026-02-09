@@ -1,5 +1,11 @@
 # Domain Architecture 
-Reference Implementation for [ERC-8110: Domain Architecture for Diamonds](https://eips.ethereum.org/EIPS/eip-8110)
+Reference Implementation for [ERC-8110: Domain Architecture for Diamonds](https://eips.ethereum.org/EIPS/eip-8110).  
+
+Demonstration of the following sections:
+
+- Subdomains and Layout-Sensitive State
+
+- Isolated Domains
 
 --- 
 

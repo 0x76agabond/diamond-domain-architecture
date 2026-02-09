@@ -114,38 +114,4 @@ contract IsolatedDomainFacetSample {
 
         return getCJK();
     }
-
-    /// read => write => read with single storage access
-    function readAndWritePackedValueSingle(bool c, bool d, bool e) external returns (bool, bool, bool) {
-        if (getC() != c) {
-            setC(c);
-        }
-
-        if (getD() != d) {
-            setD(d);
-        }
-
-        if (getE() != e) {
-            setE(e);
-        }
-
-        return (getCDE());
-    }
-
-    /// read => write => read
-    function readAndWriteUnpackedValueSingle(bool c, bool j, bool k) external returns (bool, bool, bool) {
-        if (getC() != c) {
-            setC(c);
-        }
-
-        if (getJ() != j) {
-            setJ(j);
-        }
-
-        if (getK() != k) {
-            setK(k);
-        }
-
-        return getCJK();
-    }
 }
