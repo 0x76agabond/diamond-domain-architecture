@@ -9,7 +9,7 @@ Demonstration of the following sections:
 
 --- 
 
-**⚠️ *Important Notice: The smart contract code provided in this repo serves only as an illustrative example. This example code has not undergone any security audits or formal verification processes.***
+**⚠️ *Important Notice: The smart contract code provided in this repo serves only as an illustrative example.***
 
 --- 
 
