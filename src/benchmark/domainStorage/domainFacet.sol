@@ -41,7 +41,7 @@ contract DomainFacetSample {
         view
         returns (uint256 a, uint256 b, bool c, bool d, bool e, uint256 i, bool j, bool k, bool l)
     {
-        (DomainStorage storage dmn, SubDomainStorage storage sub) = getAllDomainStorage();
+        (DomainStorage storage dmn, SubDomainStorage storage sub) = getMultiDomainStorage();
 
         a = dmn.a;
         b = dmn.mappingB[bKey];
@@ -89,7 +89,7 @@ contract DomainFacetSample {
         bool k,
         bool l
     ) external {
-        (DomainStorage storage dmn, SubDomainStorage storage sub) = getAllDomainStorage();
+        (DomainStorage storage dmn, SubDomainStorage storage sub) = getMultiDomainStorage();
 
         // main domain
         dmn.a = a;

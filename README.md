@@ -50,18 +50,19 @@ This fully isolates storage management code from business logic, while keeping r
 
 ### Result Benchmark 
 
-| Function / Metric           | AppStorage | AppStorage Packed | Domain | Isolated Domain |
-|----------------------------|------------|-------------------|--------|-----------------|
-| Deployment Gas             | 586,670    | 593,111           | **581,778** | 666,034         |
-| Bytecode Size (bytes)      | 2,497      | 2,530             | **2,478**  | 2,868           |
-| readPackedValue            | **2,386**  | **2,386**         | **2,386**  | 2,446           |
-| readUnpackedValue          | 4,523      | **2,431**         | **2,431**  | 2,491           |
-| readAllValue               | 11,479     | 9,384             | **9,375**  | 9,499           |
-| writePackedBools           | 44,157     | 44,157            | 44,157     | **44,127**      |
-| writeUnpackedBools         | 66,305     | 44,201            | 44,201     | **44,171**      |
-| writeAllValue              | 134,501    | 112,615           | **112,418**| 112,500         |
-| readAndWritePackedValue    | 24,676     | 24,676            | 24,652     | **24,509**      |
-| readAndWriteUnpackedValue  | 26,818     | 24,719            | 24,695     | **24,563**      |
+| Function / Metric         | AppStorage | AppStoragePacked | Domain      | Isolated Domain |
+| ------------------------- | ---------- | ---------------- | ----------- | --------------- |
+| Deployment Gas            | 586,670    | 592,461          | **581,778** | 666,034         |
+| Bytecode Size (bytes)     | 2,497      | 2,527            | **2,478**   | 2,868           |
+| readPackedValue           | **2,386**  | **2,386**        | **2,386**   | 2,446           |
+| readUnpackedValue         | 4,523      | **2,431**        | **2,431**   | 2,491           |
+| readAllValue              | 11,479     | **9,375**        | **9,375**   | 9,499           |
+| writePackedBools          | 44,157     | 44,157           | 44,157      | **44,127**      |
+| writeUnpackedBools        | 66,305     | 44,201           | 44,201      | **44,171**      |
+| writeAllValue             | 134,501    | 112,615          | **112,418** | 112,500         |
+| readAndWritePackedValue   | 24,676     | 24,676           | 24,652      | **24,509**      |
+| readAndWriteUnpackedValue | 26,818     | 24,719           | 24,695      | **24,563**      |
+
 
 
 

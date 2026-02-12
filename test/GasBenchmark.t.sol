@@ -4,10 +4,10 @@ pragma solidity ^0.8.13;
 import {Test} from "forge-std/Test.sol";
 import {console} from "forge-std/console.sol";
 
-import {AppStorageFacetSample} from "../../src/appStorage/appStorageFacet.sol";
-import {DomainFacetSample} from "../../src/domainStorage/domainFacet.sol";
-import {IsolatedDomainFacetSample} from "../../src/isolatedDomainStorage/isolatedDomainFacet.sol";
-import {AppStoragePackedFacetSample} from "../../src/appStoragePacked/appStoragePackedFacet.sol";
+import {AppStorageFacetSample} from "../../src/benchmark/appStorage/appStorageFacet.sol";
+import {DomainFacetSample} from "../../src/benchmark/domainStorage/domainFacet.sol";
+import {IsolatedDomainFacetSample} from "../../src/benchmark/isolatedDomainStorage/isolatedDomainFacet.sol";
+import {AppStoragePackedFacetSample} from "../../src/benchmark/appStoragePacked/appStoragePackedFacet.sol";
 
 contract GasBenchmark is Test {
     AppStorageFacetSample public appStorageSample;

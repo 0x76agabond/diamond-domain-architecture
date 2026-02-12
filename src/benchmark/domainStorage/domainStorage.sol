@@ -23,12 +23,6 @@ pragma solidity >=0.8.30;
 
 /**
  * @dev
- * An Isolated Domain is a domain that have no facet accessing its storage directly.
- * All access must go through specific helper functions.
- */
-
-/**
- * @dev
  * This implementation use Solidity's free funtion instead of library
  * free function in this case, behave similar to internal function in library.
  */
@@ -82,7 +76,7 @@ function getSubDomainStorage() pure returns (SubDomainStorage storage s) {
  * @return subDomainStorage
  */
 
-function getAllDomainStorage()
+function getMultiDomainStorage()
     pure
     returns (DomainStorage storage domainStorage, SubDomainStorage storage subDomainStorage)
 {
@@ -92,122 +86,4 @@ function getAllDomainStorage()
         domainStorage.slot := posDomain
         subDomainStorage.slot := posSub
     }
-}
-
-// Getter
-function getCDE() view returns (bool c, bool d, bool e) {
-    SubDomainStorage storage s = getSubDomainStorage();
-    c = s.c;
-    d = s.d;
-    e = s.e;
-}
-
-function getC() view returns (bool) {
-    return getSubDomainStorage().c;
-}
-
-function getD() view returns (bool) {
-    return getSubDomainStorage().d;
-}
-
-function getE() view returns (bool) {
-    return getSubDomainStorage().e;
-}
-
-function getJ() view returns (bool) {
-    return getSubDomainStorage().j;
-}
-
-function getK() view returns (bool) {
-    return getSubDomainStorage().k;
-}
-
-function getCJK() view returns (bool c, bool j, bool k) {
-    SubDomainStorage storage s = getSubDomainStorage();
-    c = s.c;
-    j = s.j;
-    k = s.k;
-}
-
-function getAllValue(uint8 bKey, uint8 iKey)
-    view
-    returns (uint256 a, uint256 b, bool c, bool d, bool e, uint256 i, bool j, bool k, bool l)
-{
-    (DomainStorage storage dmn, SubDomainStorage storage sub) = getAllDomainStorage();
-
-    a = dmn.a;
-    b = dmn.mappingB[bKey];
-    i = dmn.mappingI[iKey];
-
-    c = sub.c;
-    d = sub.d;
-    e = sub.e;
-    j = sub.j;
-    k = sub.k;
-    l = sub.l;
-}
-
-// Setter
-function setCDE(bool c, bool d, bool e) {
-    SubDomainStorage storage s = getSubDomainStorage();
-    s.c = c;
-    s.d = d;
-    s.e = e;
-}
-
-function setC(bool c) {
-    SubDomainStorage storage s = getSubDomainStorage();
-    s.c = c;
-}
-
-function setD(bool d) {
-    SubDomainStorage storage s = getSubDomainStorage();
-    s.d = d;
-}
-
-function setE(bool e) {
-    SubDomainStorage storage s = getSubDomainStorage();
-    s.e = e;
-}
-
-function setCJK(bool c, bool j, bool k) {
-    SubDomainStorage storage s = getSubDomainStorage();
-    s.c = c;
-    s.j = j;
-    s.k = k;
-}
-
-function setJ(bool j) {
-    SubDomainStorage storage s = getSubDomainStorage();
-    s.j = j;
-}
-
-function setK(bool k) {
-    SubDomainStorage storage s = getSubDomainStorage();
-    s.k = k;
-}
-
-function setAllValue(
-    uint256 a,
-    uint8 bKey,
-    uint256 bValue,
-    bool c,
-    bool d,
-    bool e,
-    uint8 iKey,
-    uint256 iValue,
-    bool j,
-    bool k,
-    bool l
-) {
-    (DomainStorage storage dmn, SubDomainStorage storage sub) = getAllDomainStorage();
-    dmn.a = a;
-    dmn.mappingB[bKey] = bValue;
-    dmn.mappingI[iKey] = iValue;
-    sub.c = c;
-    sub.d = d;
-    sub.e = e;
-    sub.j = j;
-    sub.k = k;
-    sub.l = l;
 }
