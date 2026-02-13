@@ -86,38 +86,38 @@ contract ERC7201PackedImplSample is ERC7201PackedBase {
                         READ & WRITE
        ========================================================= */
 
-    function readAndWritePackedValue(bool c, bool d, bool e)
-        external
-        returns (bool, bool, bool)
-    {
+    function readAndWritePackedValue(bool c, bool d, bool e) external returns (bool, bool, bool) {
         AppStorage storage $ = getAppStorage();
 
-        if ($.c != c) 
+        if ($.c != c) {
             $.c = c;
+        }
 
-        if ($.d != d) 
+        if ($.d != d) {
             $.d = d;
+        }
 
-        if ($.e != e) 
+        if ($.e != e) {
             $.e = e;
+        }
 
         return ($.c, $.d, $.e);
     }
 
-    function readAndWriteUnpackedValue(bool c, bool j, bool k)
-        external
-        returns (bool, bool, bool)
-    {
+    function readAndWriteUnpackedValue(bool c, bool j, bool k) external returns (bool, bool, bool) {
         AppStorage storage $ = getAppStorage();
 
-        if ($.c != c) 
+        if ($.c != c) {
             $.c = c;
+        }
 
-        if ($.j != j) 
+        if ($.j != j) {
             $.j = j;
+        }
 
-        if ($.k != k) 
+        if ($.k != k) {
             $.k = k;
+        }
 
         return ($.c, $.j, $.k);
     }

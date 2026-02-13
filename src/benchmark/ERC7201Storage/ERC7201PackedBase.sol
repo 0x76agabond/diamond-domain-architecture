@@ -29,8 +29,7 @@ abstract contract ERC7201PackedBase {
      *
      * Precomputed for efficiency.
      */
-    bytes32 private constant AppStorageLocation =
-        0x3d5c47bbcbcf0f3cb4a71e1a2c2e9b52e5c8dc1f5e9d4e2a0c91b13e45f15a00;
+    bytes32 private constant AppStorageLocation = 0x3d5c47bbcbcf0f3cb4a71e1a2c2e9b52e5c8dc1f5e9d4e2a0c91b13e45f15a00;
 
     function getAppStorage() internal pure returns (AppStorage storage $) {
         bytes32 slot = AppStorageLocation;

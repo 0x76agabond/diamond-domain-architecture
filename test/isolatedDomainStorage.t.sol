@@ -22,8 +22,7 @@ contract isolatedDomainStorage is Test {
     }
 
     function test_ReadAllValue() public view {
-        (uint256 a, uint256 b, bool c, bool d, bool e, uint256 i, bool j, bool k, bool l) =
-            app.readAllValue(0, 0);
+        (uint256 a, uint256 b, bool c, bool d, bool e, uint256 i, bool j, bool k, bool l) = app.readAllValue(0, 0);
     }
 
     function test_WritePackedValue() public {
@@ -36,17 +35,17 @@ contract isolatedDomainStorage is Test {
 
     function test_WriteAllValue() public {
         app.writeAllValue(
-            123,    // a
-            1,      // bKey
-            999,    // bValue
-            true,   // c
-            false,  // d
-            true,   // e
-            2,      // iKey
-            888,    // iValue
-            true,   // j
-            false,  // k
-            true    // l
+            123, // a
+            1, // bKey
+            999, // bValue
+            true, // c
+            false, // d
+            true, // e
+            2, // iKey
+            888, // iValue
+            true, // j
+            false, // k
+            true // l
         );
     }
 
