@@ -43,13 +43,13 @@ contract AppStorageFacetSample {
     {
         AppStorageSample.AppStorage storage s = AppStorageSample.getStorage();
 
-        a = s.a; 
-        b = s.mappingB[bKey]; 
-        i = s.mappingI[iKey]; 
-        c = s.c; 
+        a = s.a;
+        b = s.mappingB[bKey];
+        i = s.mappingI[iKey];
+        c = s.c;
         d = s.d;
-        e = s.e;        
-        j = s.j; 
+        e = s.e;
+        j = s.j;
         k = s.k;
         l = s.l;
     }

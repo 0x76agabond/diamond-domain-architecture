@@ -69,8 +69,8 @@ contract AppStoragePackedFacetSample {
 
     function writeUnpackedBools(bool c, bool j, bool k) external {
         AppStorageSample.AppStorage storage s = AppStorageSample.getStorage();
-        s.c = c; 
-        s.j = j; 
+        s.c = c;
+        s.j = j;
         s.k = k;
     }
 
@@ -96,7 +96,7 @@ contract AppStoragePackedFacetSample {
 
         s.c = c;
         s.d = d;
-        s.e = e;        
+        s.e = e;
         s.j = j;
         s.k = k;
         s.l = l;
