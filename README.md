@@ -27,15 +27,15 @@ This pattern helps reduce storage collisions and human error while enabling bett
 
 This repository provides a reference implementation and gas benchmarks comparing the original AppStorage pattern with Domain and Isolated Domain architectures.
 
-- **AppStorage** - `src/appStorage/`  
+- **AppStorage (AS Broken)** - `src/appStorage/`  
 The original storage pattern commonly used in Diamonds.  
 In this benchmark, the storage packing is intentionally broken to simulate a realistic upgrade scenario where layout changes over time.
 
-- **AppStoragePacked** - `src/appStoragePacked/`  
+- **AppStoragePacked (AS Packed)** - `src/appStoragePacked/`  
 The original AppStorage pattern with an optimized and tightly packed storage layout.  
 This variant is included to provide a fair baseline comparison against ERC-8110–based approaches.
 
-- **ERC7201Packed** - `src/ERC7201Storage/`  
+- **ERC7201Packed (ERC-7201)** - `src/ERC7201Storage/`  
 Implements the ERC-7201 storage pattern using inheritance, a widely adopted approach for proxy-safe storage management.  
 The layout is also tightly packed to provide a fair baseline when comparing against ERC-8110–based approaches.
 
@@ -54,7 +54,7 @@ This fully isolates storage management code from business logic, while keeping r
 
 ### Result Benchmark 
 
-| Function / Metric         | AppStorageBroken | AppStoragePacked | ERC7201Packed | Domain    | Isolated Domain |
+| Function / Metric         | AS Broken | AS Packed | ERC-7201 | Domain    | Isolated Domain |
 |---------------------------|-----------------|-----------------|--------------|--------------|-----------------|
 | **Deployment Gas**        | 586,452         | 592,233         | 592,185      | **581,778**  | 666,034         |
 | **Bytecode Size**         | 2,496           | 2,526           | 2,526        | **2,478**    | 2,868           |
