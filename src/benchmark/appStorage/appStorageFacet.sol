@@ -6,7 +6,7 @@ pragma solidity >=0.8.30;
  * ===========================================================================
  * Author: Hoang (0x76agabond)
  * ===========================================================================
- * ERC-8110 Reference Implementation - Diamond as Gnosis Safe Guard
+ * ERC-8110 Reference Implementation - Broken Layout
  * ===========================================================================
  */
 
@@ -43,13 +43,13 @@ contract AppStorageFacetSample {
     {
         AppStorageSample.AppStorage storage s = AppStorageSample.getStorage();
 
-        a = s.a; // slot 0
-        b = s.mappingB[bKey]; // slot 1 (mapping)
-        c = s.c; // slot 2
+        a = s.a; 
+        b = s.mappingB[bKey]; 
+        i = s.mappingI[iKey]; 
+        c = s.c; 
         d = s.d;
-        e = s.e;
-        i = s.mappingI[iKey]; // slot 3 (mapping)
-        j = s.j; // slot 4
+        e = s.e;        
+        j = s.j; 
         k = s.k;
         l = s.l;
     }

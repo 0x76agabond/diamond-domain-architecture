@@ -35,17 +35,17 @@ contract ERC7201StoragePacked is Test {
 
     function test_WriteAllValue() public {
         app.writeAllValue(
-            123, // a
-            1, // bKey
-            999, // bValue
-            true, // c
-            false, // d
-            true, // e
-            2, // iKey
-            888, // iValue
-            true, // j
-            false, // k
-            true // l
+            123,    // a
+            1,      // bKey
+            999,    // bValue
+            true,   // c
+            false,  // d
+            true,   // e
+            2,      // iKey
+            888,    // iValue
+            true,   // j
+            false,  // k
+            true    // l
         );
     }
 

@@ -1,8 +1,21 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-/// @title ERC7201PackedBase
-/// @dev ERC-7201 namespaced storage pattern (OZ v5 style)
+/*
+ * ===========================================================================
+ * Author: Hoang (0x76agabond)
+ * ===========================================================================
+ * ERC-8110 Reference Implementation - Inheritance with ERC-7201 storage
+ * ===========================================================================
+ */
+
+/**
+ * @dev
+ * Benchmark contract for ERC-8110.
+ * ERC-7201 storage pattern.
+ * The storage is well packed for comparison with domain pattern.
+ */
+
 abstract contract ERC7201PackedBase {
     /// @custom:storage-location erc7201:app.storage.packed
     struct AppStorage {
@@ -29,7 +42,7 @@ abstract contract ERC7201PackedBase {
      *
      * Precomputed for efficiency.
      */
-    bytes32 private constant AppStorageLocation = 0x3d5c47bbcbcf0f3cb4a71e1a2c2e9b52e5c8dc1f5e9d4e2a0c91b13e45f15a00;
+    bytes32 private constant AppStorageLocation = 0x665164b7f9fa75f791eb7e03ba72252e4be425b42d5f1a5ec5a49eca0a75d800;
 
     function getAppStorage() internal pure returns (AppStorage storage $) {
         bytes32 slot = AppStorageLocation;

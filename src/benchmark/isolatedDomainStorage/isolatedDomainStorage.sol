@@ -6,7 +6,7 @@ pragma solidity >=0.8.30;
  * ===========================================================================
  * Author: Hoang (0x76agabond)
  * ===========================================================================
- * ERC-8110 Reference Implementation - Diamond as Gnosis Safe Guard
+ * ERC-8110 Reference Implementation - Isolated Domain
  * ===========================================================================
  */
 
@@ -24,7 +24,7 @@ pragma solidity >=0.8.30;
 /**
  * @dev
  * An Isolated Domain is a domain that have no facet accessing its storage directly.
- * All access must go through specific helper functions.
+ * All access go through specific helper functions.
  */
 
 /**
@@ -95,12 +95,6 @@ function getMultiDomainStorage()
 }
 
 // Getter
-function getCDE() view returns (bool c, bool d, bool e) {
-    SubDomainStorage storage s = getSubDomainStorage();
-    c = s.c;
-    d = s.d;
-    e = s.e;
-}
 
 function getC() view returns (bool) {
     return getSubDomainStorage().c;
@@ -120,6 +114,13 @@ function getJ() view returns (bool) {
 
 function getK() view returns (bool) {
     return getSubDomainStorage().k;
+}
+
+function getCDE() view returns (bool c, bool d, bool e) {
+    SubDomainStorage storage s = getSubDomainStorage();
+    c = s.c;
+    d = s.d;
+    e = s.e;
 }
 
 function getCJK() view returns (bool c, bool j, bool k) {

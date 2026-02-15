@@ -6,7 +6,7 @@ pragma solidity >=0.8.30;
  * ===========================================================================
  * Author: Hoang (0x76agabond)
  * ===========================================================================
- * ERC-8110 Reference Implementation - Diamond as Gnosis Safe Guard
+ * ERC-8110 Reference Implementation - Packed Layout
  * ===========================================================================
  */
 
@@ -67,14 +67,14 @@ contract AppStoragePackedFacetSample {
         s.e = e;
     }
 
-    /// write unpacked bools (different slots)
     function writeUnpackedBools(bool c, bool j, bool k) external {
         AppStorageSample.AppStorage storage s = AppStorageSample.getStorage();
-        s.c = c; // slot 2
-        s.j = j; // slot 4
+        s.c = c; 
+        s.j = j; 
         s.k = k;
     }
 
+    ///  write everything (force multiple SSTOREs)v
     function writeAllValue(
         uint256 a,
         uint8 bKey,
@@ -90,13 +90,13 @@ contract AppStoragePackedFacetSample {
     ) external {
         AppStorageSample.AppStorage storage s = AppStorageSample.getStorage();
 
-        // slot 0
         s.a = a;
         s.mappingB[bKey] = bValue;
+        s.mappingI[iKey] = iValue;
+
         s.c = c;
         s.d = d;
-        s.e = e;
-        s.mappingI[iKey] = iValue;
+        s.e = e;        
         s.j = j;
         s.k = k;
         s.l = l;
@@ -125,7 +125,6 @@ contract AppStoragePackedFacetSample {
         return (s.c, s.d, s.e);
     }
 
-    /// read => write => read
     function readAndWriteUnpackedValue(bool c, bool j, bool k) external returns (bool, bool, bool) {
         AppStorageSample.AppStorage storage s = AppStorageSample.getStorage();
 

@@ -128,7 +128,6 @@ contract DomainFacetSample {
         return (s.c, s.d, s.e);
     }
 
-    /// read => write => read
     function readAndWriteUnpackedValue(bool c, bool j, bool k) external returns (bool, bool, bool) {
         SubDomainStorage storage s = getSubDomainStorage();
 

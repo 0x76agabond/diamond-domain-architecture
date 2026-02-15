@@ -1,6 +1,22 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
+
+/*
+ * ===========================================================================
+ * Author: Hoang (0x76agabond)
+ * ===========================================================================
+ * ERC-8110 Reference Implementation - Inheritance with ERC-7201 storage
+ * ===========================================================================
+ */
+
+/**
+ * Benchmark contract for ERC-8110.
+ * ERC-7201 storage pattern.
+ * In this version, all bools are well packed.
+ * Some function are keep the name as unpacked for comparison with AppStorage pattern.
+ */
+
 import "./ERC7201PackedBase.sol";
 
 contract ERC7201PackedImplSample is ERC7201PackedBase {
@@ -8,6 +24,7 @@ contract ERC7201PackedImplSample is ERC7201PackedBase {
                             READ
        ========================================================= */
 
+    /// read only packed bools (same slot)
     function readPackedValue() external view returns (bool, bool, bool) {
         AppStorage storage $ = getAppStorage();
         return ($.c, $.d, $.e);
@@ -18,6 +35,7 @@ contract ERC7201PackedImplSample is ERC7201PackedBase {
         return ($.c, $.j, $.k);
     }
 
+    ///  read everything (force multiple SLOADs)
     function readAllValue(uint8 bKey, uint8 iKey)
         external
         view
@@ -41,6 +59,7 @@ contract ERC7201PackedImplSample is ERC7201PackedBase {
                             WRITE
        ========================================================= */
 
+    /// write packed bools (single slot SSTORE)
     function writePackedBools(bool c, bool d, bool e) external {
         AppStorage storage $ = getAppStorage();
         $.c = c;
@@ -55,6 +74,7 @@ contract ERC7201PackedImplSample is ERC7201PackedBase {
         $.k = k;
     }
 
+    ///  write everything (force multiple SSTOREs)
     function writeAllValue(
         uint256 a,
         uint8 bKey,
@@ -86,6 +106,7 @@ contract ERC7201PackedImplSample is ERC7201PackedBase {
                         READ & WRITE
        ========================================================= */
 
+    /// read => write => read
     function readAndWritePackedValue(bool c, bool d, bool e) external returns (bool, bool, bool) {
         AppStorage storage $ = getAppStorage();
 

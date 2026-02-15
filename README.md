@@ -1,7 +1,7 @@
 # Domain Architecture 
 Reference Implementation for [ERC-8110: Domain Architecture for Diamonds](https://eips.ethereum.org/EIPS/eip-8110).  
 
-Demonstration of the following sections:
+Benchmark and demonstration of the following sections:
 
 - Subdomains and Layout-Sensitive State
 
@@ -54,18 +54,19 @@ This fully isolates storage management code from business logic, while keeping r
 
 ### Result Benchmark 
 
-| Function / Metric         | AppStorage | AppStoragePacked | ERC7201Packed | Domain      | Isolated Domain |
-| ------------------------- | ---------- | ---------------- | ------------- | ----------- | --------------- |
-| **Deployment Gas**        | 586,670    | 592,461          | 592,173       | **581,778** | 666,034         |
-| **Bytecode Size**         | 2,497      | 2,527            | 2,526         | **2,478**   | 2,868           |
-| readAllValue              | 11,479     | **9,375**        | **9,375**     | **9,375**   | 9,499           |
-| readAndWritePackedValue   | 24,676     | 24,676           | 24,676        | 24,652      | **24,509**      |
-| readAndWriteUnpackedValue | 26,818     | 24,719           | 24,719        | 24,695      | **24,563**      |
-| readPackedValue           | **2,386**  | **2,386**        | **2,386**     | **2,386**   | 2,446           |
-| readUnpackedValue         | 4,523      | **2,431**        | **2,431**     | **2,431**   | 2,491           |
-| writeAllValue             | 134,501    | 112,615          | **112,418**   | **112,418** | 112,500         |
-| writePackedBools          | 44,157     | 44,157           | 44,157        | 44,157      | **44,127**      |
-| writeUnpackedBools        | 66,305     | 44,201           | 44,201        | 44,201      | **44,171**      |
+| Function / Metric         | AppStorageBroken | AppStoragePacked | ERC7201Packed | Domain    | Isolated Domain |
+|---------------------------|-----------------|-----------------|--------------|--------------|-----------------|
+| **Deployment Gas**        | 586,452         | 592,233         | 592,185      | **581,778**  | 666,034         |
+| **Bytecode Size**         | 2,496           | 2,526           | 2,526        | **2,478**    | 2,868           |
+| readAllValue              | 11,476          | **9,375**       | **9,375**    | **9,375**    | 9,499           |
+| readAndWritePackedValue   | 24,676          | 24,676          | 24,676       | 24,652       | **24,509**      |
+| readAndWriteUnpackedValue | 26,818          | 24,719          | 24,719       | 24,695       | **24,563**      |
+| readPackedValue           | **2,386**       | **2,386**       | **2,386**    | **2,386**    | 2,446           |
+| readUnpackedValue         | 4,523           | **2,431**       | **2,431**    | **2,431**    | 2,491           |
+| writeAllValue             | 134,501         | **112,418**     | **112,418**  | **112,418**  | 112,500         |
+| writePackedBools          | 44,157          | 44,157          | 44,157       | 44,157       | **44,127**      |
+| writeUnpackedBools        | 66,305          | 44,201          | 44,201       | 44,201       | **44,171**      |
+
 
 
 

@@ -5,7 +5,7 @@ pragma solidity >=0.8.30;
  * ===========================================================================
  * Author: Hoang (0x76agabond)
  * ===========================================================================
- * ERC-8110 Reference Implementation - Domain / Sub-domain Split
+ * ERC-8110 Reference Implementation - Isolated Domain
  * ===========================================================================
  */
 
