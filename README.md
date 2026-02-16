@@ -15,11 +15,16 @@ Benchmark and demonstration of the following sections:
 
 ## Abstract
 
-ERC-8110 introduces a domain-based architectural pattern for contracts implementing the Diamond execution model defined by [ERC-2535 (Diamond Standard)](https://eips.ethereum.org/EIPS/eip-2535) or [ERC-8109 (Diamond, Simplified)](https://eips.ethereum.org/EIPS/eip-8109), together with the storage identifier mechanism defined by [ERC-8042 (Diamond Storage Identifier)](https://eips.ethereum.org/EIPS/eip-8042).
+[ERC-8110 (Domain Architecture for Diamonds)](https://eips.ethereum.org/EIPS/eip-8110) introduces a storage management architecture for contracts implementing a Diamond-based system.
 
-It defines a domain-centric storage management architecture, providing consistent storage identifiers and a structured directory model that decouples storage ownership from facet logic.
+Building on the namespaced storage identifier mechanism defined in [ERC-8042 (Diamond Storage Identifier)](https://eips.ethereum.org/EIPS/eip-8042), this proposal organizes contract state into domains and sub-domains.
+Each domain owns a dedicated storage layout and identifier, enabling consistent naming, deterministic storage positions, and a structured directory model that separates storage ownership from facet-level logic.
 
-This pattern helps reduce storage collisions and human error while enabling better tooling for multi-facet systems.
+By formalizing domain boundaries and identifier conventions, this pattern reduces the risk of storage collisions and human error, while improving auditability and enabling better tooling for complex, multi-facet systems.
+
+ERC-8110 defines only how storage is organized within Diamond-based architectures.
+It does not mandate a specific execution, upgrade, or facet model.
+Any system compatible with the Diamond architecture may adopt this Domain Architecture to manage and evolve its storage safely.
 
 ## Benchmark
 
