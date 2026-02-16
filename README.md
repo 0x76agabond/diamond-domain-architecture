@@ -17,7 +17,7 @@ Benchmark and demonstration of the following sections:
 
 [ERC-8110 (Domain Architecture for Diamonds)](https://eips.ethereum.org/EIPS/eip-8110) introduces a storage management architecture for contracts implementing a Diamond-based system.
 
-Building on the namespaced storage identifier mechanism defined in [ERC-8042 (Diamond Storage Identifier)](https://eips.ethereum.org/EIPS/eip-8042), this proposal organizes contract state into domains and sub-domains.
+Building on the namespaced storage identifier mechanism defined in [ERC-8042 (Diamond Storage)](https://eips.ethereum.org/EIPS/eip-8042), this proposal organizes contract state into domains and sub-domains.
 Each domain owns a dedicated storage layout and identifier, enabling consistent naming, deterministic storage positions, and a structured directory model that separates storage ownership from facet-level logic.
 
 By formalizing domain boundaries and identifier conventions, this pattern reduces the risk of storage collisions and human error, while improving auditability and enabling better tooling for complex, multi-facet systems.
