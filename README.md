@@ -47,10 +47,10 @@ Implements the ERC-7201 storage pattern using inheritance, a widely adopted appr
 The layout is also tightly packed to provide a fair baseline when comparing against ERC-8110–based approaches.
 
 - **Domain** - `src/domainStorage/`  
-An ERC-8110 compliant approach that separates storage identifiers by domain and sub-domain, improving clarity and providing a consistent and safer upgrade path for storage.
+An ERC-8110 compliant approach that separates storage identifiers by domains and sub-domains, improving clarity and providing a consistent and safer upgrade path for storage.
 
 - **Isolated Domain** - `src/isolatedDomainStorage/`  
-An ERC-8110 compliant approach that moves the data access layer from facets into the domain by introducing explicit getters and setters.  
+An ERC-8110 compliant approach that moves the data access layer from facets into the domains by introducing explicit getters and setters.  
 This fully isolates storage management code from business logic, while keeping runtime gas costs comparable.
 
 ### Run test
@@ -59,7 +59,7 @@ This fully isolates storage management code from business logic, while keeping r
     forge test --gas-report -vv
 ```
 
-### Result Benchmark 
+### Benchmark Results
 
 | Function / Metric         | AS Broken | AS Packed | ERC-7201 | Domain    | Isolated Domain |
 |---------------------------|-----------------|-----------------|--------------|--------------|-----------------|
