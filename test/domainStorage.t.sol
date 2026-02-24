@@ -4,7 +4,7 @@ pragma solidity >=0.8.30;
 import {Test} from "forge-std/Test.sol";
 import {console} from "forge-std/console.sol";
 
-import {DomainFacetSample} from "../../src/benchmark/domainStorage/domainFacet.sol";
+import {DomainFacetSample} from "../../src/domainStorage/domainFacet.sol";
 
 contract domainStorage is Test {
     DomainFacetSample public app;

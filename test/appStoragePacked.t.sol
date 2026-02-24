@@ -4,7 +4,7 @@ pragma solidity >=0.8.30;
 import {Test} from "forge-std/Test.sol";
 import {console} from "forge-std/console.sol";
 
-import {AppStoragePackedFacetSample} from "../../src/benchmark/appStoragePacked/appStoragePackedFacet.sol";
+import {AppStoragePackedFacetSample} from "../../src/appStoragePacked/appStoragePackedFacet.sol";
 
 contract appStoragePacked is Test {
     AppStoragePackedFacetSample public app;

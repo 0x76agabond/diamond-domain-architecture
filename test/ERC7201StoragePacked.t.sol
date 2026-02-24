@@ -4,7 +4,7 @@ pragma solidity >=0.8.30;
 import {Test} from "forge-std/Test.sol";
 import {console} from "forge-std/console.sol";
 
-import {ERC7201PackedImplSample} from "../../src/benchmark/ERC7201Storage/ERC7201PackedImpl.sol";
+import {ERC7201PackedImplSample} from "../../src/ERC7201Storage/ERC7201PackedImpl.sol";
 
 contract ERC7201StoragePacked is Test {
     ERC7201PackedImplSample public app;
