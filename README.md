@@ -42,7 +42,7 @@ In this benchmark, the storage packing is intentionally broken to simulate a rea
 The original AppStorage pattern with an optimized and tightly packed storage layout.  
 This variant is included to provide a fair baseline comparison against ERC-8110–based approaches.
 
-- **ERC7201Packed (ERC-7201)** - `src/ERC7201Storage/`  
+- **ERC7201Packed (ERC 7201)** - `src/ERC7201Storage/`  
 Implements the ERC-7201 storage pattern using inheritance, a widely adopted approach for proxy-safe storage management.  
 The layout is also tightly packed to provide a fair baseline when comparing against ERC-8110–based approaches.
 
@@ -53,29 +53,26 @@ An ERC-8110 compliant approach that separates storage identifiers by domains and
 An ERC-8110 compliant approach that moves the data access layer from facets into the domains by introducing explicit getters and setters.  
 This fully isolates storage management code from business logic, while keeping runtime gas costs comparable.
 
+- **Domain Facet Overlap (DF Overlap)** - `src/domainFacetOverlap/`  
+An ERC-8110 compliant approach that facet implemented all domain's functions.
+
 ### Run test
 
 ```bash
     forge test --gas-report -vv
 ```
 
-### Benchmark Results
+### Benchmark Comparison
 
-| Function / Metric         | AS Broken | AS Packed | ERC-7201 | Domain    | Isolated Domain |
-|---------------------------|-----------------|-----------------|--------------|--------------|-----------------|
-| **Deployment Gas**        | 586,452         | 592,233         | 592,185      | **581,778**  | 666,034         |
-| **Bytecode Size**         | 2,496           | 2,526           | 2,526        | **2,478**    | 2,868           |
-| readAllValue              | 11,476          | **9,375**       | **9,375**    | **9,375**    | 9,499           |
-| readAndWritePackedValue   | 24,676          | 24,676          | 24,676       | 24,652       | **24,509**      |
-| readAndWriteUnpackedValue | 26,818          | 24,719          | 24,719       | 24,695       | **24,563**      |
-| readPackedValue           | **2,386**       | **2,386**       | **2,386**    | **2,386**    | 2,446           |
-| readUnpackedValue         | 4,523           | **2,431**       | **2,431**    | **2,431**    | 2,491           |
-| writeAllValue             | 134,501         | **112,418**     | **112,418**  | **112,418**  | 112,500         |
-| writePackedBools          | 44,157          | 44,157          | 44,157       | 44,157       | **44,127**      |
-| writeUnpackedBools        | 66,305          | 44,201          | 44,201       | 44,201       | **44,171**      |
-
-
-
-
-
-
+| Function / Metric         | AS Broken | AS Packed   | ERC 7201    | Domain      | DF Overlap | Isolated Domain |
+| ------------------------- | --------- | ----------- | ----------- | ----------- | -------------- | --------------- |
+| **Deployment Gas**        | 586,440   | 592,233     | 592,185     | **581,778** | **581,778**    | 666,034         |
+| **Bytecode Size**         | 2,496     | 2,526       | 2,526       | **2,478**   | **2,478**      | 2,868           |
+| readAllValue              | 11,476    | **9,375**   | **9,375**   | **9,375**   | **9,375**      | 9,499           |
+| readAndWritePackedValue   | 24,676    | 24,676      | 24,676      | 24,652      | 24,652         | **24,509**      |
+| readAndWriteUnpackedValue | 26,818    | 24,719      | 24,719      | 24,695      | 24,695         | **24,563**      |
+| readPackedValue           | **2,386** | **2,386**   | **2,386**   | **2,386**   | **2,386**      | 2,446           |
+| readUnpackedValue         | 4,523     | **2,431**   | **2,431**   | **2,431**   | **2,431**      | 2,491           |
+| writeAllValue             | 134,501   | **112,418** | **112,418** | **112,418** | **112,418**    | 112,500         |
+| writePackedBools          | 44,157    | 44,157      | 44,157      | 44,157      | 44,157         | **44,127**      |
+| writeUnpackedBools        | 66,305    | 44,201      | 44,201      | 44,201      | 44,201         | **44,171**      |
