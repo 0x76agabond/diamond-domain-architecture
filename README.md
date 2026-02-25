@@ -54,7 +54,7 @@ An ERC-8110 compliant approach that moves the data access layer from facets into
 This fully isolates storage management code from business logic, while keeping runtime gas costs comparable.
 
 - **Domain Facet Overlap (DF Overlap)** - `src/domainFacetOverlap/`  
-An ERC-8110 compliant approach that facet implemented all domain's functions.
+An ERC-8110 compliant approach where a single facet implements all domain functions, with expected benchmark results matching the standard Domain pattern due to Solidity inlining producing equivalent bytecode.
 
 ### Run test
 
