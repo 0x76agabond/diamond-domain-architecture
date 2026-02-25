@@ -11,14 +11,6 @@ pragma solidity >=0.8.30;
 
 /**
  * Benchmark contract for ERC-8110.
- * Split storage into main domain + sub-domain.
- * In this version, all bools are well packed.
- * Some function are keep the name as unpacked for comparison with AppStorage pattern.
- */
-
-/**
- * @dev
- * Benchmark contract for ERC-8110.
  * Domain Architecture pattern.
  * Domain for full slot variables
  * Sub-domain for variables can be packed in the same slot.
